@@ -3,8 +3,8 @@ const controller = require('../../controllers/admin-controllers/auth')
 const router = express.Router()
 
 
-//http://localhost:5000/api/auth/login
-
 router.post('/login', controller.login)
+
+router.post('/register', controller.register)
 
 module.exports = router
