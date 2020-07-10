@@ -34,14 +34,6 @@ module.exports.login = async function(req, res) {
 }
 
 module.exports.register = async function (req, res) {
-
-    const candidate = await User.findOne({email: req.body.email})
-
-    if (candidate) {
-        res.status(409).json({
-            message: 'Користувач з такою поштовою адресою вже існує!'
-        })
-    } else {
         const salt = bcrypt.genSaltSync(10)
         const password = req.body.password
         const user = new User({
@@ -56,5 +48,4 @@ module.exports.register = async function (req, res) {
                 message: e.error.message
             })
         }
-    }
 }
