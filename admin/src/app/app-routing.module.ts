@@ -9,11 +9,9 @@ import {CategoriesPageComponent} from "./categories-page/categories-page.compone
 import {CategoriesFormComponent} from "./categories-page/categories-form/categories-form.component";
 import {PositionsFormComponent} from "./positions-page/positions-form/positions-form.component";
 
-// canActivate: [AuthGuard],
-
 const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
-  {path: '', component: AdminNavComponent, children: [
+  {path: '', component: AdminNavComponent, canActivate: [AuthGuard],  children: [
       {path: 'admin-categories', component: CategoriesPageComponent},
       {path: 'admin-positions', component: PositionsPageComponent},
       {path: 'admin-orders', component: OrdersPageComponent},
