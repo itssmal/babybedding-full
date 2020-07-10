@@ -11,6 +11,7 @@ import {PositionsFormComponent} from "./positions-page/positions-form/positions-
 
 const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
+  {path: 'register', component: LoginPageComponent},
   {path: '', component: AdminNavComponent, canActivate: [AuthGuard],  children: [
       {path: 'admin-categories', component: CategoriesPageComponent},
       {path: 'admin-positions', component: PositionsPageComponent},
