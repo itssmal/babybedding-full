@@ -9,18 +9,20 @@ import {CategoriesPageComponent} from "./categories-page/categories-page.compone
 import {CategoriesFormComponent} from "./categories-page/categories-form/categories-form.component";
 import {PositionsFormComponent} from "./positions-page/positions-form/positions-form.component";
 
+// canActivate: [AuthGuard],
+
 const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
-  {path: '', component: AdminNavComponent, canActivate: [AuthGuard],  children: [
+  {path: '', component: AdminNavComponent, children: [
       {path: 'admin-categories', component: CategoriesPageComponent},
-      {path: 'admin-positions', component: PositionsPageComponent, canActivate: [AuthGuard]},
-      {path: 'admin-orders', component: OrdersPageComponent, canActivate: [AuthGuard]},
-      {path: 'admin-categories/new', component: CategoriesFormComponent, canActivate: [AuthGuard]},
-      {path: 'admin-categories/:id', component: CategoriesFormComponent, canActivate: [AuthGuard]},
-      {path: 'admin-positions/new', component: PositionsFormComponent, canActivate: [AuthGuard]},
-      {path: 'admin-positions/edit/:id', component: PositionsFormComponent, canActivate: [AuthGuard]},
-      {path: 'admin-positions/cat/:id', component: PositionsPageComponent, canActivate: [AuthGuard]},
-      {path: 'admin-positions/:id', component: PositionsPageComponent, canActivate: [AuthGuard]}
+      {path: 'admin-positions', component: PositionsPageComponent},
+      {path: 'admin-orders', component: OrdersPageComponent},
+      {path: 'admin-categories/new', component: CategoriesFormComponent},
+      {path: 'admin-categories/:id', component: CategoriesFormComponent},
+      {path: 'admin-positions/new', component: PositionsFormComponent},
+      {path: 'admin-positions/edit/:id', component: PositionsFormComponent},
+      {path: 'admin-positions/cat/:id', component: PositionsPageComponent},
+      {path: 'admin-positions/:id', component: PositionsPageComponent}
     ],
     runGuardsAndResolvers: "always"
   }
