@@ -28,7 +28,7 @@ export class CategoriesPageComponent implements OnInit {
   }
 
   categoryDel(id: string) {
-    const decision = window.confirm('Ви дійсно хочете видалити позицію?')
+    const decision = window.confirm('Ви дійсно хочете видалити категорію?')
 
     if (decision) {
       this.categoriesService.remove(id)
@@ -42,6 +42,8 @@ export class CategoriesPageComponent implements OnInit {
              this.categories$ = this.categoriesService.fetch()
             }
         )
+    } else {
+      this.router.navigate(['/admin-categories'])
     }
   }
 }
