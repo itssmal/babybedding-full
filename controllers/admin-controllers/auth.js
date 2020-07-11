@@ -7,15 +7,13 @@ const User = require('../../models/User')
 module.exports.login = async function(req, res) {
     const candidate = await User.findOne({email: req.body.email})
 
-
     if (candidate) {
-        const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
-        if (passwordResult) {
+        if (req.body.password === candidate.password) {
             // gen token, passwords match
             const token = jwt.sign({
                 email: req.body.email,
                 userId: candidate._id,
-            }, keys.jwt, {expiresIn: 21600})
+            }, keys.jwt, {expiresIn: 3600})
 
             res.status(200).json({
                 token: `Bearer ${token}`
@@ -34,6 +32,14 @@ module.exports.login = async function(req, res) {
 }
 
 module.exports.register = async function (req, res) {
+
+    const candidate = await User.findOne({email: req.body.email})
+
+    if (candidate) {
+        res.status(409).json({
+            message: 'Користувач з такою поштовою адресою вже існує!'
+        })
+    } else {
         const salt = bcrypt.genSaltSync(10)
         const password = req.body.password
         const user = new User({
@@ -48,4 +54,5 @@ module.exports.register = async function (req, res) {
                 message: e.error.message
             })
         }
+    }
 }
